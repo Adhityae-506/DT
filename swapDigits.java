@@ -52,32 +52,34 @@
 // Output
 // 3846
 
-import java.util.Scanner;
+import java.util.*;
 
-public class BallSwap {
+public class swapDigits {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        
+        String n = sc.next();          // Original number as string
+        int q = sc.nextInt();          // Number of swaps
+        String original = n;           // Keep a copy for comparison
+        char[] arr = n.toCharArray();  // Mutable array for swaps
 
-        int ballPosition = sc.nextInt();
+        for (int i = 0; i < q; i++) {
+            int x = sc.nextInt() - 1;  // Convert to 0-based index
+            int y = sc.nextInt() - 1;
 
-     
-        int n = sc.nextInt();
-
-        for (int i = 0; i < n; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-
-          
-            if (ballPosition == a) {
-                ballPosition = b;
-            } else if (ballPosition == b) {
-                ballPosition = a;
-            }
+            // Swap
+            char temp = arr[x];
+            arr[x] = arr[y];
+            arr[y] = temp;
         }
 
-        
-        System.out.println(ballPosition);
+        String result = new String(arr); // Final result after swaps
 
-        sc.close();
+        if (result.equals(original)) {
+            System.out.print("YES");
+        } else {
+            long R = Long.parseLong(result);
+            System.out.print(2 * R);
+        }
     }
 }
